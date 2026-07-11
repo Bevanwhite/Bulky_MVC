@@ -1,0 +1,47 @@
+<form method="post" class="row">
+    <div class="border p-3">
+        <input
+            class="form-control border-0 shadow"
+            data-val="true"
+            data-val-maxlength="The field Category Name must be a string or array type with a maximum length of '30'."
+            data-val-maxlength-max="30"
+            data-val-required="The Category Name field is required."
+            id="Name"
+            maxlength="30"
+            name="Name"
+            type="text"
+            value=""
+        /><label class="ms-2" for="Name">Category Name</label
+        ><span
+            class="field-validation-valid"
+            data-valmsg-for="Name"
+            data-valmsg-replace="true"
+        ></span>
+    </div>
+</form>
+
+<div class="form-floating py-2 col-12">
+    <input
+        class="form-control border-0 shadow input-validation-error"
+        type="text"
+        data-val="true"
+        data-val-maxlength="The field Category Name must be a string or array type with a maximum length of '30'."
+        data-val-maxlength-max="30"
+        data-val-required="The Category Name field is required."
+        id="Name"
+        maxlength="30"
+        name="Name"
+        value=""
+        aria-describedby="Name-error"
+        aria-invalid="true"
+    />
+    <label class="ms-2" for="Name">Category Name</label>
+    <span
+        class="text-danger field-validation-error"
+        data-valmsg-for="Name"
+        data-valmsg-replace="true"
+        ><span id="Name-error" class=""
+            >The Category Name field is required.</span
+        ></span
+    >
+</div>

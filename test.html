@@ -1,0 +1,73 @@
+<form method="post" class="row" novalidate="novalidate">
+    <div class="border p-3">
+        <div class="form-floating py-2 col-12">
+            <input
+                class="form-control border-0 shadow input-validation-error"
+                type="text"
+                data-val="true"
+                data-val-maxlength="The field Category Name must be a string or array type with a maximum length of '30'."
+                data-val-maxlength-max="30"
+                data-val-required="The Category Name field is required."
+                id="Name"
+                maxlength="30"
+                name="Name"
+                value=""
+                aria-describedby="Name-error"
+                aria-invalid="true"
+            />
+            <label class="ms-2" for="Name">Category Name</label>
+            <span
+                class="text-danger field-validation-error"
+                data-valmsg-for="Name"
+                data-valmsg-replace="true"
+                ><span id="Name-error" class=""
+                    >The Category Name field is required.</span
+                ></span
+            >
+        </div>
+        <div class="form-floating py-2 col-12">
+            <input
+                class="form-control border-0 shadow input-validation-error"
+                type="number"
+                data-val="true"
+                data-val-range="Display Order must be between 1-100"
+                data-val-range-max="100"
+                data-val-range-min="1"
+                data-val-required="The Display Order field is required."
+                id="DisplayOrder"
+                name="DisplayOrder"
+                value=""
+                aria-describedby="DisplayOrder-error"
+            /><input name="__Invariant" type="hidden" value="DisplayOrder" />
+            <label class="ms-2" for="DisplayOrder">Display Order</label>
+            <span
+                class="text-danger field-validation-error"
+                data-valmsg-for="DisplayOrder"
+                data-valmsg-replace="true"
+                ><span id="DisplayOrder-error" class=""
+                    >The Display Order field is required.</span
+                ></span
+            >
+        </div>
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-primary form-control">
+                    Create
+                </button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a
+                    class="btn btn-outline-primary form-control"
+                    href="/Category"
+                >
+                    Back to List
+                </a>
+            </div>
+        </div>
+    </div>
+    <input
+        name="__RequestVerificationToken"
+        type="hidden"
+        value="CfDJ8GlfKRkdHc9Gp3D5tYH_mdzBT7ctmla34og6cyYKrRzdGB2HksWZGlCo0Ed_n7j9UBr29TaGYRzlP3DgM2mQ9Mfy11BxtXe3Ij3bVbaGyEeLglrd8pW9Nho8aIsJ7BPw_ZqsjRlBEZyPQFXLFlog89U"
+    />
+</form>

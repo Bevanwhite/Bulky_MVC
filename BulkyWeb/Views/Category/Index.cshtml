@@ -1,13 +1,12 @@
 ﻿@model List<Category>
+@{
+    Layout = "_CardLayout";
+    ViewBag.CardTitle = "Category List";
+}
 <partial name="_Notification" />
 <div class="container">
-    <div class="row pt-4">
-        <div class="col-6">
-            <h2 class="text-primary">
-                Category List
-            </h2>
-        </div>
-        <div class="col-6 text-end">
+    <div class="row ">
+        <div class="col-12 text-end">
             <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
                 <i class="bi bi-plus-circle"></i> Create New Category
             </a>

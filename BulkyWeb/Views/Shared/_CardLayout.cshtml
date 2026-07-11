@@ -1,0 +1,29 @@
+@{
+    Layout = "_Layout";
+}
+
+<div class="card shadow border-0 mt-4 mb-6">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">
+                    @ViewBag.CardTitle
+                </h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4 ">
+        <form method="post" class="row">
+            <div class="p-3">
+                @RenderBody()
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+}
