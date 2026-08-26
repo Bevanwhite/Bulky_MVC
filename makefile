@@ -6,6 +6,10 @@ createGlobaljson:
 	dotnet new globaljson --sdk-version ${version}
 	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'
 
+createPackage:
+	cd BulkyBookWeb && dotnet add package ${name} --version ${version}
+	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'
+
 createProject:
 	dotnet new mvc -n ${name}
 	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'
@@ -62,4 +66,8 @@ createInterface:
 
 createRazorPage:
 	cd BulkyWebRazor_Temp && dotnet new page -n ${file} -o ${folder} --namespace=${namespace}
+	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'
+
+createArea:
+	cd BulkyBookWeb && dotnet aspnet-codegenerator area ${name}
 	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'
