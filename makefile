@@ -18,32 +18,46 @@ addProjectToSln:
 	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'
 
 run:
-	cd BulkyWeb && dotnet run
+	cd BulkyBookWeb && dotnet run
 
 build:
-	cd BulkyWeb && dotnet build
+	cd BulkyBookWeb && dotnet build
 
 watch:
-	cd BulkyWeb && dotnet watch run
+	cd BulkyBookWeb && dotnet watch run
 
 databaseUpdate:
-	cd BulkyWeb && dotnet ef database update
+	dotnet ef database update \
+	--project Bulky.DataAccess \
+	--startup-project BulkyBookWeb
+	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'
+
+dropDatabase:
+	dotnet ef database drop \
+	--project Bulky.DataAccess \
+	--startup-project BulkyBookWeb
 	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'
 
 addMigrations:
-	cd BulkyWeb && dotnet ef migrations add ${name}
+	dotnet ef migrations add ${name} \
+	--project Bulky.DataAccess \
+	--startup-project BulkyBookWeb
 	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'
 
 createView:
-	cd BulkyWeb && dotnet new view -n ${file} -o ${folder}
+	cd BulkyBookWeb && dotnet new view -n ${file} -o ${folder}
 	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'
 
 clean:
-	cd BulkyWeb && dotnet clean
+	cd BulkyBookWeb && dotnet clean
 	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'
 
 createClass:
-	cd BulkyWeb && dotnet new class -n ${file} -o ${folder}
+	cd ${base} && dotnet new class -n ${file} -o ${folder}
+	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'
+
+createInterface:
+	cd ${base} && dotnet new interface -n ${file} -o ${folder}
 	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'
 
 createRazorPage:

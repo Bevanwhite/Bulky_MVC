@@ -1,0 +1,10 @@
+﻿@model Category
+@{
+    Layout = "_CardLayout";
+    ViewBag.CardTitle = "Delete Category";
+}
+<input asp-for="Id" hidden/>
+@* <div asp-validation-summary="ModelOnly"></div> *@
+<input-group asp-for="Name" layout="floating"  disabled="true"/>
+<input-group asp-for="DisplayOrder" layout="floating" disabled="true" />
+<form-actions submit-text="Delete" submit-button-class="btn-danger" back-button-class="btn-outline-secondary"  row-css="mt-3"  />

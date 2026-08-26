@@ -1,0 +1,8 @@
+﻿@model Category
+@{
+    Layout = "_CardLayout";
+    ViewBag.CardTitle = "Edit Category";
+}
+<input-group asp-for="Name" layout="floating"/>
+<input-group asp-for="DisplayOrder" layout="floating"/>
+<form-actions submit-text="Update" back-button-class="btn-outline-secondary" row-css="mt-3"/>
