@@ -49,7 +49,7 @@ addMigrations:
 	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'
 
 createView:
-	cd BulkyBookWeb && dotnet new view -n ${file} -o ${folder}
+	cd ${base} && dotnet new view -n ${file} -o ${folder}
 	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'
 
 clean:
@@ -65,9 +65,16 @@ createInterface:
 	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'
 
 createRazorPage:
-	cd BulkyWebRazor_Temp && dotnet new page -n ${file} -o ${folder} --namespace=${namespace}
+	cd ${base} && dotnet new page -n ${file} -o ${folder} \
+	--namespace=${namespace}
 	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'
 
 createArea:
 	cd BulkyBookWeb && dotnet aspnet-codegenerator area ${name}
 	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'
+
+createAreaController:
+	cd BulkyBookWeb && \
+	dotnet new mvccontroller --name $(name) --output $(outDir) \
+	--namespace $(namespace)
+	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'	

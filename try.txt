@@ -1,0 +1,11 @@
+Assignment 01
+
+push product to database - done
+implement product repository
+configure product repository in unitofwork
+
+Assignment 02
+
+create product controller and action methods
+create View for curd
+create client and server side validation

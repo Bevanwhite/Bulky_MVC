@@ -1,5 +1,4 @@
 using BulkyBook.DataAccess;
-using BulkyBook.DataAccess.Repository;
 using BulkyBook.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -59,6 +58,7 @@ public class CategoryController : Controller
         {
             NotFound();
         }
+
         return View(categoryFormDb);
     }
 

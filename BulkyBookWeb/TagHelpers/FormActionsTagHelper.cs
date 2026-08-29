@@ -7,6 +7,7 @@ public class FormActionsTagHelper : TagHelper
 {
     public string SubmitText { get; set; } = "Submit";
     public string SubmitButtonClass { get; set; } = "btn-primary";
+    public string Area { get; set; } = "Admin";
     public string Controller { get; set; } = "Category";
     public string BackAction { get; set; } = "Index";
     public string BackText { get; set; } = "Back to List";
@@ -23,8 +24,8 @@ public class FormActionsTagHelper : TagHelper
                     </button>
                 </div>
                 <div class=""col-6 col-md-3"">
-                    <a asp-controller=""{Controller}"" 
-                    asp-action=""{BackAction}"" href=""/{Controller}""
+                    <a asp-area=""{Area}"" asp-controller=""{Controller}"" 
+                    asp-action=""{BackAction}"" href=""/{Area}/{Controller}""
                     class=""btn {BackButtonClass} form-control"">{BackText}</a>
                 </div>
             </div>";

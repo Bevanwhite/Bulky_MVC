@@ -1,0 +1,18 @@
+﻿@model Product
+@{
+    Layout = "_CardLayout";
+    ViewBag.CardTitle = "Delete Product";
+}
+<input asp-for="Id" hidden/>
+@* <div asp-validation-summary="ModelOnly"></div> *@
+<input-group asp-for="Title" layout="floating" disabled="true"/>
+<input-group asp-for="Description" layout="floating" disabled="true"/>
+<input-group asp-for="ISBN" layout="floating" disabled="true"/>
+<input-group asp-for="Author" layout="floating" disabled="true"/>
+<input-group asp-for="ISBN" layout="floating" disabled="true"/>
+<input-group asp-for="ListPrice" layout="floating" disabled="true"/>
+<input-group asp-for="Price" layout="floating" disabled="true"/>
+<input-group asp-for="Price50" layout="floating" disabled="true"/>
+<input-group asp-for="Price100" layout="floating" disabled="true"/>
+<form-actions submit-text="Delete" submit-button-class="btn-danger" 
+back-button-class="btn-outline-secondary" row-css="mt-3" area="Admin" controller="Product"  />
