@@ -1,3 +1,4 @@
+
 solution:
 	dotnet new sln -n ${name}
 	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'
@@ -32,19 +33,31 @@ watch:
 
 databaseUpdate:
 	dotnet ef database update \
-	--project Bulky.DataAccess \
+	--project BulkyBook.DataAccess \
 	--startup-project BulkyBookWeb
 	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'
 
 dropDatabase:
 	dotnet ef database drop \
-	--project Bulky.DataAccess \
+	--project BulkyBook.DataAccess \
+	--startup-project BulkyBookWeb
+	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'
+
+migrationsList:
+	dotnet ef migrations list \
+	--project BulkyBook.DataAccess \
 	--startup-project BulkyBookWeb
 	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'
 
 addMigrations:
 	dotnet ef migrations add ${name} \
-	--project Bulky.DataAccess \
+	--project BulkyBook.DataAccess \
+	--startup-project BulkyBookWeb
+	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'
+
+removeMigrations:
+	dotnet ef migrations remove \
+	--project BulkyBook.DataAccess \
 	--startup-project BulkyBookWeb
 	bash -c 'read -n1 -s -r -p "Press any key to clear..." && clear'
 
