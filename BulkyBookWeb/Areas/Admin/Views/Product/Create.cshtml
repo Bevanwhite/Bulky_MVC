@@ -1,17 +1,24 @@
-﻿@model Product
+﻿@model ProductVM
 @{
     Layout = "_CardLayout";
     ViewBag.CardTitle = "Create Product";
 }
 
-<input-group asp-for="Title" layout="floating"/>
-<input-group asp-for="Description" layout="floating"/>
-<input-group asp-for="ISBN" layout="floating"/>
-<input-group asp-for="Author" layout="floating"/>
-<input-group asp-for="ISBN" layout="floating"/>
-<input-group asp-for="ListPrice" layout="floating"/>
-<input-group asp-for="Price" layout="floating"/>
-<input-group asp-for="Price50" layout="floating"/>
-<input-group asp-for="Price100" layout="floating"/>
-<form-actions submit-text="Create" row-css="mt-3" submit-button-class="btn-outline-secondary"
+<input-group asp-for="Product.Title" layout="floating"/>
+<input-group asp-for="Product.Description" layout="floating"/>
+<input-group asp-for="Product.ISBN" layout="floating"/>
+<input-group asp-for="Product.Author" layout="floating"/>
+<input-group asp-for="Product.ISBN" layout="floating"/>
+<input-group asp-for="Product.ListPrice" layout="floating"/>
+<input-group asp-for="Product.Price" layout="floating"/>
+<input-group asp-for="Product.Price50" layout="floating"/>
+<input-group asp-for="Product.Price100" layout="floating"/>
+<select-floating 
+    asp-for="@Model.Product.CategoryId" 
+    asp-items="@Model.CategoryList" 
+    placeholder="--Select Category--"
+    placeholder-disabled="false" />
+<input-group asp-for="Product.ImageUrl" layout="floating"/>
+<form-actions submit-text="Create" row-css="mt-3" 
+    submit-button-class="btn-outline-secondary"
     area="Admin" controller="Product" />
