@@ -1,18 +1,15 @@
 ﻿using BulkyBook.DataAccess.Data;
-using BulkyBook.DataAccess.Repository;
+using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.Models;
 
-namespace BulkyBook.DataAccess;
+namespace BulkyBook.DataAccess.Repository;
 
-public class ProductRepository : Repository<Product>, IProductRepository
+public class ProductRepository(ApplicationDbContext db) 
+    : Repository<Product>(db), IProductRepository
 {
-    private readonly ApplicationDbContext _db;
-    public ProductRepository(ApplicationDbContext db) : base(db)
-    {
-        _db = db;
-    }
+    private readonly ApplicationDbContext _db = db;
 
-    public void Update(Product obj)
+    public override void Update(Product obj)
     {
         _db.Products.Update(obj);
     }

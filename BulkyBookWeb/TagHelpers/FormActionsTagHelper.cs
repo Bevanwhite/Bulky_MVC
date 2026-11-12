@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace BulkyBook.TagHelpers;
+namespace BulkyBookWeb.TagHelpers;
 
 [HtmlTargetElement("form-actions")]
 public class FormActionsTagHelper : TagHelper

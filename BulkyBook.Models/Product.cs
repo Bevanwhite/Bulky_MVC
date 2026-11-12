@@ -11,12 +11,12 @@ public class Product
     public int Id { get; set; }
 
     [Required]
-    public string Title { get; set; }
-    public string Description { get; set; }
+    public string Title { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
     [Required]
-    public string ISBN { get; set; }
+    public string ISBN { get; set; } = string.Empty;
     [Required]
-    public string Author { get; set; }
+    public string Author { get; set; } = string.Empty;
 
     [Required]
     [DisplayName("List Price")]
@@ -45,5 +45,5 @@ public class Product
     public Category Category { get; set; }
 
     [ValidateNever]
-    public string ImageUrl { get; set; }
+    public string ImageUrl { get; set; } = string.Empty;
 }

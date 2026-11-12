@@ -1,11 +1,11 @@
 ﻿@model ProductVM
 @{
     Layout = "_CardLayout";
-    ViewBag.CardTitle = "Create Product";
+    ViewBag.CardTitle = (Model.Product.Id != 0 ? "Update": "Create") + " Product";
 }
-
+<input asp-for="Product.Id" hidden/>
 <input-group asp-for="Product.Title" layout="floating"/>
-<input-group asp-for="Product.Description" layout="floating"/>
+<input-group asp-for="Product.Description" layout="floating" textarea="true" rows="5"/>
 <input-group asp-for="Product.ISBN" layout="floating"/>
 <input-group asp-for="Product.Author" layout="floating"/>
 <input-group asp-for="Product.ISBN" layout="floating"/>
@@ -18,7 +18,21 @@
     asp-items="@Model.CategoryList" 
     placeholder="--Select Category--"
     placeholder-disabled="false" />
-<input-group asp-for="Product.ImageUrl" layout="floating"/>
-<form-actions submit-text="Create" row-css="mt-3" 
+<input-group 
+    asp-for="Product.ImageUrl" 
+    layout="floating" 
+    input-type="file" 
+    validation="false"/>
+
+@if(Model.Product.Id != 0)
+{
+    <form-actions submit-text="Update" row-css="mt-3" 
     submit-button-class="btn-outline-secondary"
     area="Admin" controller="Product" />
+}
+else
+{
+    <form-actions submit-text="Create" row-css="mt-3" 
+    submit-button-class="btn-outline-secondary"
+    area="Admin" controller="Product" />
+}

@@ -24,10 +24,10 @@ public class ProductController : Controller
         return View(objProductList);
     }
 
-    public IActionResult Create()
+    public IActionResult Upsert(int? id)
     {
 
-        ProductVM productVM = new()
+        ProductVM productVm = new()
         {
             CategoryList = _unitOfWork.Category.GetAll()
             .Select(u => new SelectListItem
@@ -38,62 +38,36 @@ public class ProductController : Controller
             Product = new Product()
         };
 
-        return View(productVM);
+        if (id is not null or 0)
+        {
+            productVm.Product = _unitOfWork.Product.Get(u => u.Id == id)
+            ?? throw new ArgumentException("Id is not found");
+        }
+
+        return View(productVm);
     }
 
     [HttpPost]
-    public IActionResult Create(ProductVM productVM)
+    public IActionResult Upsert(ProductVM productVm, IFormFile? file)
     {
         if (ModelState.IsValid)
         {
-            _unitOfWork.Product.Add(productVM.Product);
+            _unitOfWork.Product.Add(productVm.Product);
             _unitOfWork.Save();
             TempData["success"] = "Product created successfully";
             return RedirectToAction("Index");
         }
         else
         {
-            productVM.CategoryList = _unitOfWork.Category.GetAll()
+            productVm.CategoryList = _unitOfWork.Category.GetAll()
                 .Select(u => new SelectListItem
                 {
                     Text = u.Name,
                     Value = u.Id.ToString()
                 });
 
-            return View(productVM);
+            return View(productVm);
         }
-    }
-
-    public IActionResult Edit(int? id)
-    {
-        if (id == null || id == 0)
-        {
-            return NotFound();
-        }
-
-        Product productFormDb = _unitOfWork.Product.Get(u => u.Id == id)
-            ?? throw new ArgumentException("Id is not found");
-
-        if (productFormDb == null)
-        {
-            NotFound();
-        }
-
-        return View(productFormDb);
-    }
-
-    [HttpPost]
-    public IActionResult Edit(Product obj)
-    {
-        if (ModelState.IsValid)
-        {
-            _unitOfWork.Product.Update(obj);
-            _unitOfWork.Save();
-            TempData["success"] = "Product Updated successfully";
-            return RedirectToAction("Index");
-        }
-
-        return View();
     }
 
     public IActionResult Delete(int? id)
@@ -103,12 +77,11 @@ public class ProductController : Controller
             return NotFound();
         }
 
-        Product productFormDb = _unitOfWork.Product.Get(u => u.Id == id)
-            ?? throw new ArgumentException("Id is not found");
+        Product? productFormDb = _unitOfWork.Product.Get(u => u.Id == id);
 
         if (productFormDb == null)
         {
-            NotFound();
+            NotFound("Id is not found");
         }
 
         return View(productFormDb);
@@ -117,12 +90,11 @@ public class ProductController : Controller
     [HttpPost, ActionName("Delete")]
     public IActionResult DeletePOST(int? id)
     {
-        Product obj = _unitOfWork.Product.Get(u => u.Id == id)
-            ?? throw new ArgumentException("Id is not found");
+        Product? obj = _unitOfWork.Product.Get(u => u.Id == id);
 
         if (obj == null)
         {
-            return NotFound();
+            return NotFound("Id is not found");
         }
 
         _unitOfWork.Product.Remove(obj);

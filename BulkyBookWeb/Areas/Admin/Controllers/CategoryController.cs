@@ -50,13 +50,13 @@ public class CategoryController : Controller
             return NotFound();
         }
 
-        Category categoryFormDb = _unitOfWork.Category.Get(u => u.Id == id) ?? throw new ArgumentException("Id is not found");
+        Category? categoryFormDb = _unitOfWork.Category.Get(u => u.Id == id);
         // Category categoryFormDb1 = _db.Categories.FirstOrDefault(u => u.Id == id);
         // Category categoryFormDb2 = _db.Categories.Where(u => u.Id == id).FirstOrDefault();
 
         if (categoryFormDb == null)
         {
-            NotFound();
+            NotFound("Id is not found");
         }
 
         return View(categoryFormDb);
@@ -82,13 +82,13 @@ public class CategoryController : Controller
             return NotFound();
         }
 
-        Category categoryFormDb = _unitOfWork.Category.Get(u => u.Id == id) ?? throw new ArgumentException("Id is not found");
+        Category? categoryFormDb = _unitOfWork.Category.Get(u => u.Id == id);
         // Category categoryFormDb1 = _db.Categories.FirstOrDefault(u => u.Id == id);
         // Category categoryFormDb2 = _db.Categories.Where(u => u.Id == id).FirstOrDefault();
 
         if (categoryFormDb == null)
         {
-            return NotFound();
+            return NotFound("Id is not found");
         }
         return View(categoryFormDb);
     }
@@ -96,11 +96,11 @@ public class CategoryController : Controller
     [HttpPost, ActionName("Delete")]
     public IActionResult DeletePOST(int? id)
     {
-        Category obj = _unitOfWork.Category.Get(u => u.Id == id) ?? throw new ArgumentException("Id is not found");
+        Category? obj = _unitOfWork.Category.Get(u => u.Id == id);
 
         if (obj == null)
         {
-            return NotFound();
+            return NotFound("Id is not found");
         }
 
         _unitOfWork.Category.Remove(obj);

@@ -2,35 +2,34 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
+namespace BulkyBookWeb.TagHelpers;
+
 // Renders a Bootstrap 5 "form-floating" wrapper around a model-bound
 // <select> element, together with its <label> and
 // validation-message span.
 // Usage: <select-floating asp-for="..." asp-items="..."></select-floating>
 [HtmlTargetElement("select-floating")]
-public class SelectFloatingTagHelper : TagHelper
+public class SelectFloatingTagHelper(IHtmlGenerator generator) : TagHelper
 {
     // MVC's HTML generator. Produces the same name, id, data-val-*
     // and selected-option markup that <select asp-for>, <label asp-for>
     // and <span asp-validation-for> would generate.
-    private readonly IHtmlGenerator _generator;
-
-    // Creates the helper and stores the injected HTML generator.   
-    public SelectFloatingTagHelper(IHtmlGenerator generator) => _generator = generator;
+    private readonly IHtmlGenerator _generator = generator;
 
     // The current MVC view context (ModelState, ViewData, model metadata).
     // Supplied automatically by MVC and not bindable from markup.
     [ViewContext]
     [HtmlAttributeNotBound]
-    public ViewContext ViewContext { get; set; }
+    public ViewContext ViewContext { get; set; } = null!;
 
     // Bound model property (asp-for). Provides the expression name,
     // metadata and current value used for binding, labels and validation.
     [HtmlAttributeName("asp-for")]
-    public ModelExpression For { get; set; }
+    public ModelExpression For { get; set; } = null!;
 
     // The list of options to render inside the <select> (asp-items).
     [HtmlAttributeName("asp-items")]
-    public IEnumerable<SelectListItem> Items { get; set; }
+    public IEnumerable<SelectListItem> Items { get; set; } = [];
 
 
     // Text shown for the "empty" placeholder <option>.
@@ -41,7 +40,7 @@ public class SelectFloatingTagHelper : TagHelper
     // The value posted when the placeholder is chosen.
     // Defaults to empty so the model binder receives "no value".
     [HtmlAttributeName("placeholder-value")]
-    public string PlaceholderValue { get; set; }
+    public string PlaceholderValue { get; set; } = null!;
 
     // When true, the placeholder option is rendered with disabled="disabled".
     // Defaults to false so the user can always return to "no selection".
